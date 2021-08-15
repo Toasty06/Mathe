@@ -27,16 +27,12 @@ namespace Primzahl
                         long a3 = (long)Convert.ToDouble(a2);
                         long b3 = (long)Convert.ToDouble(b2);
                         long c3 = (long)Convert.ToDouble(c2);
-                        Console.WriteLine(a3);
-                        Console.WriteLine(b3);
-                        Console.WriteLine(c3);
-                        long D = (b3 * b3) - 4 * a3 * c3;
-                        double WD = Math.Sqrt(D);
-                        decimal ac = 1 / (a3 * 2M);//not working
+                        long D = (b3 * b3) - 4 * a3 * c3;       //Diskriminante
+                        double WD = Math.Sqrt(D);               //Wurzel Diskriminante
+                        decimal ac = 1 / (a3 * 2M);             //1. Teil
                         double acd = Convert.ToDouble(ac);
-                        double x1 = Math.Round((acd * (-b3 + WD)), 3);
+                        double x1 = Math.Round((acd * (-b3 + WD)), 3);     //2. Teil
                         double x2 = Math.Round((acd * (-b3 - WD)), 3);
-                        Console.WriteLine(ac);
                         if (D < 0)
                         {
                             Console.WriteLine("Keine Lösung");
