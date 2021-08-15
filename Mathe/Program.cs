@@ -92,9 +92,6 @@ namespace Primzahl
                             {
                                 Console.WriteLine(o);
                                 Console.WriteLine("Primzahl");
-                                Console.Write(a);
-                                Console.Write("; " + b);
-                                Console.WriteLine("; " + c);
                                 Console.WriteLine("----------------------------");
 
                             }
@@ -102,9 +99,6 @@ namespace Primzahl
                             {
                                 Console.WriteLine(o);
                                 Console.WriteLine("keine Primzahl");
-                                Console.Write(a);
-                                Console.Write("; " + b);
-                                Console.WriteLine("; " + c);
                                 Console.WriteLine("----------------------------");
                             }
 
