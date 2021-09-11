@@ -8,14 +8,13 @@ namespace Primzahl
     {
         static void Main(string[] args)
         {
-            int o = 0;
 
-            while (o == 0)
+            while (true)
             {
                 Console.WriteLine("Primzahl: 1");
                 Console.WriteLine("Nullstellen: 2");
                 Console.WriteLine("Primfaktoren: 3");
-                Console.WriteLine("Quadratische Ergänzung: 4");
+                Console.WriteLine("Quadratische Ergänzung(WIP): 4");
                 switch (Console.ReadLine())
                 {
                     case "2":
@@ -95,14 +94,12 @@ namespace Primzahl
                                 //console
                                 if (z == 2 || z == 3 || z == 5 || z == 7 || pz == true)
                                 {
-                                    Console.WriteLine(o);
                                     Console.WriteLine("Primzahl");
                                     Console.WriteLine("----------------------------");
 
                                 }
                                 else
                                 {
-                                    Console.WriteLine(o);
                                     Console.WriteLine("keine Primzahl");
                                     Console.WriteLine("----------------------------");
                                 }
@@ -117,11 +114,11 @@ namespace Primzahl
                         try
                         {
                             int zul = Int32.Parse(Console.ReadLine());
-
+                            
                             foreach (int i in PFZ(zul))
                             {
                                 Console.WriteLine(i);
-                            };
+                            }
                             String zih = Console.ReadLine();
                             try
                             {
@@ -148,36 +145,70 @@ namespace Primzahl
                             long a5 = (long)Convert.ToDouble(a4);
                             long b5 = (long)Convert.ToDouble(b4);
                             long c5 = (long)Convert.ToDouble(c4);
+                            long klammerfaktor = 1;
+                            long afkt = 1;
+                            long bfkt = 1;
+
                             ArrayList same = new ArrayList();
-
-                            if (a5 % b5 == 0)
-                            {
-
+                            ArrayList compare = new ArrayList();
+                            
+                            
                                 foreach (int i in PFZ(a5))
                                 {
-                                    if (PFZ(b5).Contains(i))
-                                    {
-                                        same.Add(i);
-                                        Console.WriteLine(i);
-                                        Console.WriteLine(same);
-                                    }
+                                    compare.Add(i);
                                 }
+                                if (a5 > b5)
+                                {
                                 foreach (int i in PFZ(b5))
                                 {
-                                    if (PFZ(a5).Contains(i))
+                                    if (compare.Contains(i))
                                     {
+                                        compare.Remove(i);
                                         same.Add(i);
-                                        Console.WriteLine(i);
-                                        Console.WriteLine(same);
                                     }
                                 }
+                                foreach (int o in compare)
+                                {
+                                    Console.WriteLine(o);
+                                    afkt *= o;
+                                }
+
                             }
-                           
+                                else if (b5 > a5)
+                                {
+                                    foreach (int i in PFZ(b5))
+                                    {
+                                        compare.Add(i);
+                                    }
+                                    foreach (int i in PFZ(a5))
+                                    {
+                                        if (compare.Contains(i))
+                                        {
+                                            compare.Remove(i);
+                                            same.Add(i);
+                                        }
+
+                                    }
+                                foreach (int o in compare)
+                                {
+                                    Console.WriteLine(o);
+                                    afkt *= o;
+                                }
+                            }
                             else
                             {
                                 Console.WriteLine("fucked");
                             }
+                            Console.WriteLine(".............");
+
+                            foreach (int o in same)
+                            {
+                                klammerfaktor *= o;
+                            }
+                            Console.WriteLine(klammerfaktor+"*("+ afkt+"*(x^2)+"+bfkt + "*x");
+                            Console.WriteLine(".............");
                             Console.WriteLine("----------------------------");
+                            
                         }
                         catch { }
                         break;
@@ -195,7 +226,7 @@ namespace Primzahl
 
             if (array3.Contains((int)Convert.ToDouble(zahl)))
             {
-                Console.WriteLine("keine Zerlegung möglich");
+                Faktoren.Add((int)Convert.ToDouble(zahl));
 
             }
             else
@@ -203,9 +234,10 @@ namespace Primzahl
                 //Zerlegen
                 foreach (int i in array3)
                 {
-                    if (zahl % i == 0)
+                    while (zahl % i == 0)
                     {
                         Faktoren.Add(i);
+                        zahl = zahl / i;
                     }
 
                 }
